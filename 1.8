@@ -1,0 +1,18 @@
+(define (cube x) (* x x x))
+
+(define (good-guess? x guess)
+  (< (abs (- (cube guess) x)) 0.0001))
+
+(define (improve-guess x guess)
+  (/ (+ (/ x (square guess)) (* 2 guess))
+     3))
+
+(define (find-cube-root x guess)
+  (if (good-guess? x guess)
+      guess
+      (find-cube-root x (improve-guess x guess))))
+
+(define (cube-root x)
+  (find-cube-root x 1.0))
+
+  

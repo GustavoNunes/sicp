@@ -1,0 +1,7 @@
+The execution aborts with an infinite recursion error.
+
+The ordinary "new-if" procedure uses applicative-order evaluation, which means that all it's operands are evaluated before itself (the operand) is evaluated. The second operand, being recursive, will call itself forever.
+
+If one were to use a regular "cond" expression, it would work successfully, as does the "if" expression. The problem is that the "new-if" procedure wraps it, using applicative-order evaluation.
+
+So to use recursion under an applicative-order evaluating interpreter, there must be a special-form conditional expression, using a different evaluation strategy, to avoid infinite recursion.

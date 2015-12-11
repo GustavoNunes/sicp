@@ -1,0 +1,9 @@
+(define (lowest a b c) (cond ((and (<= a b) (<= a c)) a)
+			     ((and (<= b a) (<= b c)) b)
+			     ((and (<= c a) (<= c b)) c)))
+
+(define (square-of-2-largest x y z)
+  (+ (cond ((= (lowest x y z) x) (+ (square y) (square z)))
+	   ((= (lowest x y z) y) (+ (square x) (square z)))
+	   ((= (lowest x y z) z) (+ (square x) (square y))))))
+	   

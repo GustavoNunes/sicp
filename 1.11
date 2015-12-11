@@ -1,0 +1,15 @@
+;; tree-recursive process
+(define (f x)
+  (cond ((< x 3) x)
+	(else (+ (f (- x 1))
+		 (* 2 (f (- x 2)))
+		 (* 3 (f (- x 3)))))))
+
+;; iterative process
+(define (g x)
+  (define (g-iter a b c count)
+    (cond ((= count x) a)
+	  (else (g-iter (+ a (* 2 b) (* 3 c)) a b (+ count 1)))))
+  (if (< x 3)
+      x
+      (g-iter 4 2 1 3)))
